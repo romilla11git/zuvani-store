@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Zuvani Tees</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <div class="logo-placeholder">ZUVANI TEES</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="admin-login.html">Admin</a></li>
+            <li><a href="#" id="cart-toggle" class="cart-icon">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Theme Selector -->
+    <div class="theme-selector">
+        <button onclick="toggleThemeMenu()" class="theme-btn"><i class="fas fa-palette"></i> Themes</button>
+        <div class="theme-menu" id="themeMenu">
+            <div class="theme-option" onclick="changeTheme('dark')">🖤 Street Dark</div>
+            <div class="theme-option" onclick="changeTheme('light')">💙 Fresh Light</div>
+            <div class="theme-option" onclick="changeTheme('vibrant')">💜 Urban Vibrant</div>
+            <div class="theme-option" onclick="changeTheme('nature')">💚 Earthy Natural</div>
+            <div class="theme-option" onclick="changeTheme('luxury')">⭐ Luxury Gold</div>
+            <div class="theme-option" onclick="changeTheme('minimal')">⚪ Modern Minimal</div>
+        </div>
+    </div>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-header">
+                <h1>Get In Touch</h1>
+                <p class="section-subtitle">We'd love to hear from you! Reach out through any channel below</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-methods">
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p>Speak directly with our team</p>
+                        <a href="tel:0758619460" class="contact-link">
+                            <i class="fas fa-phone"></i> 0758619460
+                        </a>
+                    </div>
+
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>WhatsApp</h3>
+                        <p>Quick replies & order support</p>
+                        <a href="https://wa.me/254758619460?text=Hi%20Zuvani!%20I%20want%20to%20order..." class="contact-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p>Send us a detailed message</p>
+                        <div class="email-options">
+                            <a href="mailto:info@zuvanitees.com?subject=Zuvani%20Tees%20Inquiry" class="contact-link">
+                                <i class="fas fa-envelope"></i> Business Email
+                            </a>
+                            <a href="mailto:eunicekironyo@gmail.com?subject=Zuvani%20Tees%20Order" class="contact-link">
+                                <i class="fas fa-user"></i> Personal Email
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p>Our location in Nairobi</p>
+                        <div class="location-info">
+                            <p><strong>Marurui, Nairobi</strong></p>
+                            <p>Free delivery within Nairobi area</p>
+                            <button onclick="shareLocation()" class="location-btn">
+                                <i class="fas fa-location-arrow"></i> Share Your Location
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container glass-card">
+                    <h3>Send us a Message</h3>
+                    <form id="contact-form" action="https://formsubmit.co/eunicekironyo@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="New Message from Zuvani Tees Website">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Your Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="07XXXXXXXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject">
+                                <option value="Order Inquiry">Order Inquiry</option>
+                                <option value="Product Question">Product Question</option>
+                                <option value="Delivery Question">Delivery Question</option>
+                                <option value="Size Guide">Size Guide Help</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your order or question..."></textarea>
+                        </div>
+
+                        <button type="submit" class="cta-button full-width">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                    <div id="form-message" class="form-message"></div>
+                </div>
+            </div>
+
+            <!-- Business Hours -->
+            <div class="business-hours glass-card">
+                <h3>🕒 Business Hours</h3>
+                <div class="hours-grid">
+                    <div class="hour-item">
+                        <span>Monday - Friday</span>
+                        <span>8:00 AM - 8:00 PM</span>
+                    </div>
+                    <div class="hour-item">
+                        <span>Saturday</span>
+                        <span>9:00 AM - 6:00 PM</span>
+                    </div>
+                    <div class="hour-item">
+                        <span>Sunday</span>
+                        <span>10:00 AM - 4:00 PM</span>
+                    </div>
+                </div>
+                <p class="hours-note">* Delivery times may vary. We'll confirm your delivery time when you order.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Sharing Modal -->
+    <div id="location-modal" class="modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3>Share Your Location</h3>
+                <button onclick="closeLocationModal()" class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>To help us deliver to you faster, please share your location:</p>
+                <div class="location-options">
+                    <button onclick="openGoogleMaps()" class="location-option">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Open Google Maps</span>
+                        <small>Drop a pin at your location</small>
+                    </button>
+                    <button onclick="shareManualLocation()" class="location-option">
+                        <i class="fas fa-edit"></i>
+                        <span>Enter Address Manually</span>
+                        <small>Type your full address</small>
+                    </button>
+                    <button onclick="useCurrentLocation()" class="location-option">
+                        <i class="fas fa-location-arrow"></i>
+                        <span>Use Current Location</span>
+                        <small>GPS location detection</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="brand-logo">ZUVANI TEES</div>
+                    <p class="footer-tagline">Own Your Vibe. Wear Your Story.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> 0758619460</p>
+                    <p><i class="fas fa-envelope"></i> info@zuvanitees.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Marurui, Nairobi, Kenya</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="shop.html">Shop</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#size-guide">Size Guide</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Zuvani Tees. All rights reserved. | Proudly Kenyan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="theme.js"></script>
+    <script>
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            // Simulate form submission (FormSubmit.co will handle actual email)
+            setTimeout(() => {
+                document.getElementById('form-message').innerHTML = 
+                    '<div class="success-message"><i class="fas fa-check-circle"></i> Message sent successfully! We\'ll get back to you within 24 hours.</div>';
+                this.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Location sharing functions
+        function shareLocation() {
+            document.getElementById('location-modal').style.display = 'flex';
+        }
+
+        function closeLocationModal() {
+            document.getElementById('location-modal').style.display = 'none';
+        }
+
+        function openGoogleMaps() {
+            window.open('https://maps.google.com?q=Marurui+Nairobi', '_blank');
+            closeLocationModal();
+            alert('Please drop a pin at your location and share it with us on WhatsApp!');
+        }
+
+        function shareManualLocation() {
+            const address = prompt('Please enter your full delivery address:');
+            if (address) {
+                const whatsappMsg = `Hi Zuvani! My delivery address is: ${address}`;
+                window.open(`https://wa.me/254758619460?text=${encodeURIComponent(whatsappMsg)}`, '_blank');
+            }
+            closeLocationModal();
+        }
+
+        function useCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        const whatsappMsg = `Hi Zuvani! My location: https://maps.google.com/?q=${lat},${lng}`;
+                        window.open(`https://wa.me/254758619460?text=${encodeURIComponent(whatsappMsg)}`, '_blank');
+                    },
+                    () => {
+                        alert('Unable to get your location. Please try manual address entry.');
+                    }
+                );
+            } else {
+                alert('Geolocation is not supported by your browser. Please try manual address entry.');
+            }
+            closeLocationModal();
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('location-modal');
+            if (e.target === modal) {
+                closeLocationModal();
+            }
+        });
+    </script>
+</body>
+</html>

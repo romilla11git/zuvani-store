@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Zuvani Tees</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-login-body">
+    <div class="admin-login-container">
+        <div class="admin-login-card glass-card">
+            <div class="admin-logo">
+                <div class="brand-logo">ZUVANI TEES</div>
+                <p>Admin Portal</p>
+            </div>
+
+            <!-- Login Section -->
+            <div id="login-section" class="login-section">
+                <h2><i class="fas fa-lock"></i> Admin Login</h2>
+                
+                <div class="form-group">
+                    <label for="admin-password">Enter Password</label>
+                    <input type="password" id="admin-password" placeholder="Enter your admin password" required>
+                </div>
+
+                <button onclick="login()" class="cta-button full-width">
+                    <i class="fas fa-sign-in-alt"></i> Login to Admin
+                </button>
+
+                <div class="login-help">
+                    <p>First time? Use password: <strong>zuvani2025</strong></p>
+                </div>
+
+                <div id="login-message" class="message-box"></div>
+
+                <div class="login-options">
+                    <button onclick="showSection('change-password')" class="link-btn">
+                        <i class="fas fa-key"></i> Change Password
+                    </button>
+                    <button onclick="showSection('forgot-password')" class="link-btn">
+                        <i class="fas fa-question-circle"></i> Forgot Password?
+                    </button>
+                </div>
+            </div>
+
+            <!-- Change Password Section -->
+            <div id="change-password-section" class="login-section" style="display: none;">
+                <h2><i class="fas fa-key"></i> Change Password</h2>
+                
+                <div class="form-group">
+                    <label for="old-password">Current Password</label>
+                    <input type="password" id="old-password" placeholder="Enter current password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" placeholder="Enter new password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" placeholder="Confirm new password" required>
+                </div>
+
+                <button onclick="changePassword()" class="cta-button full-width">
+                    <i class="fas fa-save"></i> Update Password
+                </button>
+
+                <div id="password-message" class="message-box"></div>
+
+                <button onclick="showSection('login')" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Login
+                </button>
+            </div>
+
+            <!-- Forgot Password Section -->
+            <div id="forgot-password-section" class="login-section" style="display: none;">
+                <h2><i class="fas fa-unlock-alt"></i> Recover Access</h2>
+                
+                <div class="recovery-options">
+                    <div class="recovery-option" onclick="showRecoveryMethod('email')">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email Recovery</span>
+                        <small>Reset via email</small>
+                    </div>
+
+                    <div class="recovery-option" onclick="showRecoveryMethod('security')">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Security Questions</span>
+                        <small>Answer security questions</small>
+                    </div>
+
+                    <div class="recovery-option" onclick="showRecoveryMethod('backup')">
+                        <i class="fas fa-life-ring"></i>
+                        <span>Backup Codes</span>
+                        <small>Use emergency codes</small>
+                    </div>
+                </div>
+
+                <!-- Email Recovery -->
+                <div id="email-recovery" class="recovery-method" style="display: none;">
+                    <div class="form-group">
+                        <label for="recovery-email">Your Email</label>
+                        <input type="email" id="recovery-email" value="eunicekironyo@gmail.com" readonly>
+                    </div>
+                    <button onclick="recoverViaEmail()" class="cta-button full-width">
+                        <i class="fas fa-paper-plane"></i> Send Reset Link
+                    </button>
+                </div>
+
+                <!-- Security Questions -->
+                <div id="security-recovery" class="recovery-method" style="display: none;">
+                    <div class="form-group">
+                        <label>What's the brand name? (all lowercase)</label>
+                        <input type="text" id="security-answer" placeholder="Type your answer">
+                    </div>
+                    <button onclick="recoverViaSecurity()" class="cta-button full-width">
+                        <i class="fas fa-check"></i> Verify Answer
+                    </button>
+                </div>
+
+                <!-- Backup Codes -->
+                <div id="backup-recovery" class="recovery-method" style="display: none;">
+                    <div class="form-group">
+                        <label for="backup-code">Enter Backup Code</label>
+                        <input type="text" id="backup-code" placeholder="Enter your backup code">
+                    </div>
+                    <button onclick="recoverViaBackup()" class="cta-button full-width">
+                        <i class="fas fa-key"></i> Use Backup Code
+                    </button>
+                    <div class="backup-help">
+                        <p><i class="fas fa-info-circle"></i> Backup codes were provided when you first set up the admin panel.</p>
+                    </div>
+                </div>
+
+                <div id="recovery-message" class="message-box"></div>
+
+                <button onclick="showSection('login')" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Login
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const store = new ZuvaniStore();
+
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.login-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').style.display = 'block';
+            
+            // Clear messages
+            clearMessages();
+        }
+
+        function showRecoveryMethod(method) {
+            // Hide all recovery methods
+            document.querySelectorAll('.recovery-method').forEach(method => {
+                method.style.display = 'none';
+            });
+            
+            // Show selected method
+            document.getElementById(method + '-recovery').style.display = 'block';
+            document.getElementById('recovery-message').innerHTML = '';
+        }
+
+        function login() {
+            const password = document.getElementById('admin-password').value;
+            const message = document.getElementById('login-message');
+            
+            if (!password) {
+                showMessage(message, 'Please enter your password', 'error');
+                return;
+            }
+            
+            if (store.checkAdminPassword(password)) {
+                localStorage.setItem('zuvani_admin_authenticated', 'true');
+                showMessage(message, '✅ Login successful! Redirecting...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'admin.html';
+                }, 1500);
+            } else {
+                showMessage(message, '❌ Incorrect password! Try: zuvani2025', 'error');
+            }
+        }
+
+        function changePassword() {
+            const oldPassword = document.getElementById('old-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const message = document.getElementById('password-message');
+            
+            if (!oldPassword || !newPassword || !confirmPassword) {
+                showMessage(message, 'Please fill all fields', 'error');
+                return;
+            }
+            
+            if (newPassword.length < 4) {
+                showMessage(message, 'Password must be at least 4 characters', 'error');
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                showMessage(message, 'New passwords do not match', 'error');
+                return;
+            }
+            
+            if (store.changeAdminPassword(oldPassword, newPassword)) {
+                showMessage(message, '✅ Password changed successfully!', 'success');
+                setTimeout(() => {
+                    showSection('login');
+                    // Clear fields
+                    document.getElementById('old-password').value = '';
+                    document.getElementById('new-password').value = '';
+                    document.getElementById('confirm-password').value = '';
+                }, 2000);
+            } else {
+                showMessage(message, '❌ Current password is incorrect', 'error');
+            }
+        }
+
+        function recoverViaEmail() {
+            const message = document.getElementById('recovery-message');
+            showMessage(message, '📧 Reset link sent to eunicekironyo@gmail.com', 'success');
+            setTimeout(() => {
+                // Simulate password reset to default
+                store.adminPassword = 'zuvani2025';
+                localStorage.setItem('zuvani_admin_password', 'zuvani2025');
+                showMessage(message, '✅ Password reset to: zuvani2025', 'success');
+                setTimeout(() => {
+                    showSection('login');
+                }, 3000);
+            }, 2000);
+        }
+
+        function recoverViaSecurity() {
+            const answer = document.getElementById('security-answer').value;
+            const message = document.getElementById('recovery-message');
+            
+            if (answer.toLowerCase() === 'zuvani') {
+                store.adminPassword = 'zuvani2025';
+                localStorage.setItem('zuvani_admin_password', 'zuvani2025');
+                showMessage(message, '✅ Password reset to: zuvani2025', 'success');
+                setTimeout(() => {
+                    showSection('login');
+                }, 3000);
+            } else {
+                showMessage(message, '❌ Incorrect answer. Please try again.', 'error');
+            }
+        }
+
+        function recoverViaBackup() {
+            const code = document.getElementById('backup-code').value;
+            const message = document.getElementById('recovery-message');
+            const validCodes = ['ZUVANI2024', 'BACKUP123', 'ADMIN456'];
+            
+            if (validCodes.includes(code.toUpperCase())) {
+                store.adminPassword = 'zuvani2025';
+                localStorage.setItem('zuvani_admin_password', 'zuvani2025');
+                showMessage(message, '✅ Password reset to: zuvani2025', 'success');
+                setTimeout(() => {
+                    showSection('login');
+                }, 3000);
+            } else {
+                showMessage(message, '❌ Invalid backup code. Please try again.', 'error');
+            }
+        }
+
+        function showMessage(element, text, type) {
+            element.innerHTML = `<div class="message ${type}">${text}</div>`;
+        }
+
+        function clearMessages() {
+            document.querySelectorAll('.message-box').forEach(box => {
+                box.innerHTML = '';
+            });
+        }
+
+        // Enter key support
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const activeSection = document.querySelector('.login-section[style=""]');
+                if (activeSection.id === 'login-section') {
+                    login();
+                } else if (activeSection.id === 'change-password-section') {
+                    changePassword();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

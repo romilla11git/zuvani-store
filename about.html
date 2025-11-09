@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Zuvani Tees | Kenyan Streetwear</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <div class="logo-placeholder">ZUVANI TEES</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin-login.html">Admin</a></li>
+            <li><a href="#" id="cart-toggle" class="cart-icon">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Theme Selector -->
+    <div class="theme-selector">
+        <button onclick="toggleThemeMenu()" class="theme-btn"><i class="fas fa-palette"></i> Themes</button>
+        <div class="theme-menu" id="themeMenu">
+            <div class="theme-option" onclick="changeTheme('dark')">🖤 Street Dark</div>
+            <div class="theme-option" onclick="changeTheme('light')">💙 Fresh Light</div>
+            <div class="theme-option" onclick="changeTheme('vibrant')">💜 Urban Vibrant</div>
+            <div class="theme-option" onclick="changeTheme('nature')">💚 Earthy Natural</div>
+            <div class="theme-option" onclick="changeTheme('luxury')">⭐ Luxury Gold</div>
+            <div class="theme-option" onclick="changeTheme('minimal')">⚪ Modern Minimal</div>
+        </div>
+    </div>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="about-header">
+                <h1>Our Story</h1>
+                <p class="section-subtitle">From the streets of Nairobi to your wardrobe</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-card glass-card">
+                    <div class="founder-section">
+                        <div class="founder-image">
+                            <div class="image-placeholder">
+                                <i class="fas fa-user-circle"></i>
+                                <p>Founder's Photo</p>
+                                <small>Upload to images folder</small>
+                            </div>
+                        </div>
+                        <div class="founder-info">
+                            <h2>Meet Eunice</h2>
+                            <p class="founder-title">Founder & CEO of Zuvani Tees</p>
+                            <p class="founder-bio">
+                                Welcome to <strong>Zuvani Tees</strong>, where confidence meets creativity in the heart of Kenyan streetwear culture. Founded by Eunice, a passionate entrepreneur from Nairobi, Zuvani represents the vibrant spirit of Kenyan youth.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="story-content">
+                        <div class="story-point">
+                            <h3>🇰🇪 Our Kenyan Roots</h3>
+                            <p>Born and bred in Nairobi, Zuvani Tees embodies the energy, creativity, and resilience of Kenyan urban culture. Every design tells a story inspired by our streets, our people, and our dreams.</p>
+                        </div>
+
+                        <div class="story-point">
+                            <h3>🎨 The Zuvani Vision</h3>
+                            <p>We believe your clothing should be an extension of your personality. That's why we create pieces that help you <strong>Own Your Vibe and Wear Your Story</strong> with pride and confidence.</p>
+                        </div>
+
+                        <div class="story-point">
+                            <h3>⭐ Quality Promise</h3>
+                            <p>We specialize in premium polo and round neck t-shirts that combine comfort, style, and affordability. Our unisex designs are crafted for dreamers, hustlers, and go-getters who move with purpose.</p>
+                        </div>
+
+                        <div class="story-point">
+                            <h3>🤝 Community First</h3>
+                            <p>As a 100% Kenyan-owned business, we're committed to supporting local talent and building a community where creativity thrives. When you choose Zuvani, you're supporting local dreams.</p>
+                        </div>
+                    </div>
+
+                    <div class="mission-statement">
+                        <blockquote>
+                            "Born from the streets, inspired by culture, powered by ambition. Zuvani is more than a brand; it's a lifestyle. Join the movement."
+                        </blockquote>
+                    </div>
+
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <i class="fas fa-tshirt"></i>
+                            <h4>Premium Quality</h4>
+                            <p>Only the best materials for lasting comfort and style</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-handshake"></i>
+                            <h4>Local Pride</h4>
+                            <p>Proudly Kenyan, supporting local economy and talent</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-heart"></i>
+                            <h4>Customer Love</h4>
+                            <p>Your satisfaction is our top priority</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Urban Spirit</h4>
+                            <p>Capturing the energy of Nairobi's streets</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="brand-logo">ZUVANI TEES</div>
+                    <p class="footer-tagline">Own Your Vibe. Wear Your Story.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> 0758619460</p>
+                    <p><i class="fas fa-envelope"></i> info@zuvanitees.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Marurui, Nairobi, Kenya</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="shop.html">Shop</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#size-guide">Size Guide</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Zuvani Tees. All rights reserved. | Proudly Kenyan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>
