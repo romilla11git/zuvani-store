@@ -79,7 +79,7 @@
                     <label for="message">Message</label>
                     <textarea id="message" rows="5" placeholder="Your Message"></textarea>
                 </div>
-                <button class="btn" style="width: 100%;">Send Message</button>
+                <button class="btn" id="send-message" style="width: 100%;">Send Message</button>
                 
                 <div class="delivery-options">
                     <h3>Fast Delivery Options</h3>
@@ -146,11 +146,29 @@
                 </div>
                 
                 <div id="payment-details">
-                    <div class="form-group">
-                        <label for="phone-number">Phone Number (for M-Pesa)</label>
-                        <input type="text" id="phone-number" placeholder="Enter your phone number">
+                    <div id="mpesa-payment" class="payment-section">
+                        <div class="form-group">
+                            <label for="phone-number">Phone Number</label>
+                            <input type="text" id="phone-number" placeholder="07XXXXXXXX">
+                        </div>
+                        <button class="btn" id="request-stk">Request Payment via M-Pesa</button>
                     </div>
-                    <button class="btn complete-payment">Complete Payment</button>
+                    
+                    <div id="stk-prompt" class="stk-prompt" style="display: none;">
+                        <div class="stk-header">
+                            <i class="fas fa-sim-card"></i>
+                            <h3>M-Pesa STK Push</h3>
+                        </div>
+                        <div class="stk-content">
+                            <p>Enter your M-Pesa PIN to complete payment of</p>
+                            <p class="amount" id="stk-amount">$0.00</p>
+                            <div class="pin-input">
+                                <input type="password" id="mpesa-pin" maxlength="4" placeholder="Enter PIN">
+                            </div>
+                            <button class="btn confirm-payment" id="confirm-payment">Confirm Payment</button>
+                            <button class="btn cancel-payment" id="cancel-payment">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
