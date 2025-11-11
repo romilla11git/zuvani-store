@@ -1,186 +1,57 @@
-<!-- Add this to your existing index.html head -->
-<style>
-    .payment-section {
-        padding: 2rem 1rem;
-        text-align: center;
-    }
-    
-    .payment-methods {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        max-width: 400px;
-        margin: 0 auto;
-    }
-    
-    .payment-method {
-        background: var(--card-bg);
-        border: 1px solid var(--border-color);
-        padding: 1.5rem;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    
-    .payment-method:hover {
-        border-color: var(--accent-color);
-        transform: translateY(-2px);
-    }
-        </style>    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuvani Tees - Quality Streetwear</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">ZUVANI TEES</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="admin-login.html">Admin</a>
+            <a href="#" class="cart-btn">Cart (<span id="cart-count">0</span>)</a>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="glass-card hero-content">
-            <div class="trust-badges">
-                <div class="trust-badge">
-                    <div class="badge-icon">🇰🇪</div>
-                    <span>Kenyan Owned & Operated</span>
-                </div>
-                <div class="trust-badge">
-                    <div class="badge-icon">⭐</div>
-                    <span>Quality Guaranteed</span>
-                </div>
-                <div class="trust-badge">
-                    <div class="badge-icon">🚚</div>
-                    <span>Fast Marurui Delivery</span>
-                </div>
-            </div>
-
-            <h1 class="brand-title">ZUVANI TEES</h1>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>ZUVANI TEES</h1>
             <p class="tagline">Own Your Vibe. Wear Your Story.</p>
-            <p class="hero-description">
-                Premium polo & round neck t-shirts • Unisex • Kenyan Made • Free Delivery in Nairobi
-            </p>
-            
+            <p class="hero-desc">Premium Streetwear • Kenyan Made • Free Delivery Nairobi</p>
             <div class="hero-buttons">
-                <a href="shop.html" class="cta-button">Shop Collection</a>
-                <a href="about.html" class="cta-button outline">Our Story</a>
-            </div>
-
-            <div class="social-proof">
-                <div class="proof-item">
-                    <i class="fas fa-star"></i>
-                    <span>4.8/5 Customer Rating</span>
-                </div>
-                <div class="proof-item">
-                    <i class="fas fa-shipping-fast"></i>
-                    <span>200+ Happy Customers</span>
-                </div>
-                <div class="proof-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Marurui, Nairobi</span>
-                </div>
+                <a href="shop.html" class="btn btn-gold">Shop Now</a>
+                <a href="about.html" class="btn btn-outline">Our Story</a>
             </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="featured-section">
+    <!-- Products -->
+    <section class="products-section">
         <div class="container">
-            <h2 class="section-title">🔥 BEST SELLERS</h2>
-            
-            <div class="product-grid" id="featured-products">
+            <h2>Featured Products</h2>
+            <div class="products-grid" id="products-container">
                 <!-- Products loaded by JavaScript -->
             </div>
-            
-            <div class="section-footer">
-                <a href="shop.html" class="cta-button">View All Products</a>
-            </div>
         </div>
     </section>
-
-    <!-- Trust Section -->
-    <section class="trust-section">
-        <div class="container">
-            <h2 class="section-title">Why Choose Zuvani?</h2>
-            <div class="trust-grid">
-                <div class="trust-card">
-                    <i class="fas fa-award"></i>
-                    <h3>Premium Quality</h3>
-                    <p>High-quality materials that last longer and feel better</p>
-                </div>
-                <div class="trust-card">
-                    <i class="fas fa-truck"></i>
-                    <h3>Free Delivery</h3>
-                    <p>Free delivery within Nairobi on all orders</p>
-                </div>
-                <div class="trust-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Quality Guarantee</h3>
-                    <p>30-day quality guarantee on all products</p>
-                </div>
-                <div class="trust-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Support Local</h3>
-                    <p>100% Kenyan owned and operated business</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Shopping Cart -->
-    <div class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-header">
-            <h3>Your Cart</h3>
-            <button onclick="closeCart()" class="close-cart"><i class="fas fa-times"></i></button>
-        </div>
-        
-        <div class="cart-items" id="cart-items">
-            <p class="empty-cart">Your cart is empty</p>
-        </div>
-        
-        <div class="cart-footer">
-            <div class="cart-total">
-                <strong>Total:</strong>
-                <strong id="cart-total">KSh 0</strong>
-            </div>
-            <button class="cta-button checkout-btn" onclick="checkout()">Proceed to Checkout</button>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="brand-logo">ZUVANI TEES</div>
-                    <p class="footer-tagline">Own Your Vibe. Wear Your Story.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p><i class="fas fa-phone"></i> 0758619460</p>
-                    <p><i class="fas fa-envelope"></i> info@zuvanitees.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Marurui, Nairobi, Kenya</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="shop.html">Shop</a>
-                    <a href="about.html">About Us</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="#size-guide">Size Guide</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Zuvani Tees. All rights reserved. | Proudly Kenyan</p>
-            </div>
+            <p>&copy; 2024 Zuvani Tees. All rights reserved.</p>
+            <p>📍 Marurui, Nairobi | 📞 0738105708 | 📱 0738105708</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    <script src="theme.js"></script>
 </body>
-
 </html>
