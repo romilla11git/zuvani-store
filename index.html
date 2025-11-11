@@ -4,422 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zuvani - Modern Fashion</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dark-mode.css">
+    <link rel="stylesheet" href="styles/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #3a86ff;
-            --secondary-color: #8338ec;
-            --text-color: #333;
-            --bg-color: #fff;
-            --header-bg: #fff;
-            --card-bg: #f8f9fa;
-            --border-color: #e0e0e0;
-            --shadow: 0 4px 12px rgba(0,0,0,0.08);
-            --transition: all 0.3s ease;
-        }
-
-        .dark-mode {
-            --primary-color: #5a9cff;
-            --secondary-color: #9d5cff;
-            --text-color: #e0e0e0;
-            --bg-color: #121212;
-            --header-bg: #1e1e1e;
-            --card-bg: #2d2d2d;
-            --border-color: #444;
-            --shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: var(--transition);
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: var(--header-bg);
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            transition: var(--transition);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: var(--transition);
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-color);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            padding: 0.5rem;
-            border-radius: 50%;
-        }
-
-        .theme-toggle:hover {
-            background-color: var(--card-bg);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 5%;
-            min-height: calc(100vh - 200px);
-        }
-
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 3rem;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: white;
-            color: var(--primary-color);
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-        }
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .product-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .product-img {
-            height: 200px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-info h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .product-price {
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .add-to-cart {
-            width: 100%;
-            padding: 0.7rem;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .add-to-cart:hover {
-            background-color: var(--secondary-color);
-        }
-
-        .page-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-        }
-
-        .about-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(58, 134, 255, 0.2);
-        }
-
-        .cart-items {
-            margin-bottom: 2rem;
-        }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            box-shadow: var(--shadow);
-        }
-
-        .cart-item-img {
-            width: 80px;
-            height: 80px;
-            background-color: #ddd;
-            border-radius: 5px;
-            margin-right: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-        }
-
-        .cart-item-details {
-            flex-grow: 1;
-        }
-
-        .cart-item-price {
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .cart-summary {
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-
-        .payment-methods {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .payment-method {
-            flex: 1;
-            text-align: center;
-            padding: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .payment-method:hover {
-            border-color: var(--primary-color);
-            background-color: rgba(58, 134, 255, 0.05);
-        }
-
-        .payment-method.selected {
-            border-color: var(--primary-color);
-            background-color: rgba(58, 134, 255, 0.1);
-        }
-
-        .payment-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        footer {
-            background-color: var(--header-bg);
-            padding: 2rem 5%;
-            text-align: center;
-            margin-top: 3rem;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .social-icons a {
-            color: var(--text-color);
-            font-size: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .social-icons a:hover {
-            color: var(--primary-color);
-        }
-
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                padding: 1rem;
-            }
-
-            nav ul {
-                margin-top: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            nav ul li {
-                margin: 0.5rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .products {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-
-            .payment-methods {
-                flex-direction: column;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -432,7 +20,7 @@
                     <li><a href="#" class="nav-link" data-page="about">About</a></li>
                     <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
                     <li><a href="#" class="nav-link" data-page="cart">Cart <span id="cart-count">(0)</span></a></li>
-                    <li><a href="#" class="nav-link" data-page="admin">Admin</a></li>
+                    <li><a href="admin/admin.html" class="nav-link">Admin</a></li>
                 </ul>
             </nav>
             <button class="theme-toggle" id="theme-toggle">
@@ -451,94 +39,16 @@
             </div>
             
             <h2 class="page-title">Featured Products</h2>
-            <div class="products">
-                <div class="product-card">
-                    <div class="product-img">Product Image</div>
-                    <div class="product-info">
-                        <h3>Classic White Shirt</h3>
-                        <p class="product-price">$49.99</p>
-                        <button class="add-to-cart" data-id="1" data-name="Classic White Shirt" data-price="49.99">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">Product Image</div>
-                    <div class="product-info">
-                        <h3>Denim Jacket</h3>
-                        <p class="product-price">$79.99</p>
-                        <button class="add-to-cart" data-id="2" data-name="Denim Jacket" data-price="79.99">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">Product Image</div>
-                    <div class="product-info">
-                        <h3>Summer Dress</h3>
-                        <p class="product-price">$59.99</p>
-                        <button class="add-to-cart" data-id="3" data-name="Summer Dress" data-price="59.99">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">Product Image</div>
-                    <div class="product-info">
-                        <h3>Leather Boots</h3>
-                        <p class="product-price">$129.99</p>
-                        <button class="add-to-cart" data-id="4" data-name="Leather Boots" data-price="129.99">Add to Cart</button>
-                    </div>
-                </div>
+            <div class="products" id="featured-products">
+                <!-- Products loaded by JavaScript -->
             </div>
         </div>
 
         <!-- Shop Page -->
         <div id="shop" class="page">
             <h1 class="page-title">Our Collection</h1>
-            <div class="products">
-                <div class="product-card">
-                    <div class="product-img">Product Image</div>
-                    <div class="product-info">
-                        <h3>Classic White Shirt</h3>
-                        <p class="product-price">$49.99</p>
-                        <button class="add-to-cart" data-id="1" data-name="Classic White Shirt" data-price="49.99">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">Product Image</div>
-                    <div class="product-info">
-                        <h3>Denim Jacket</h3>
-                        <p class="product-price">$79.99</p>
-                        <button class="add-to-cart" data-id="2" data-name="Denim Jacket" data-price="79.99">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">Product Image</div>
-                    <div class="product-info">
-                        <h3>Summer Dress</h3>
-                        <p class="product-price">$59.99</p>
-                        <button class="add-to-cart" data-id="3" data-name="Summer Dress" data-price="59.99">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">Product Image</div>
-                    <div class="product-info">
-                        <h3>Leather Boots</h3>
-                        <p class="product-price">$129.99</p>
-                        <button class="add-to-cart" data-id="4" data-name="Leather Boots" data-price="129.99">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">Product Image</div>
-                    <div class="product-info">
-                        <h3>Casual Trousers</h3>
-                        <p class="product-price">$39.99</p>
-                        <button class="add-to-cart" data-id="5" data-name="Casual Trousers" data-price="39.99">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">Product Image</div>
-                    <div class="product-info">
-                        <h3>Winter Coat</h3>
-                        <p class="product-price">$149.99</p>
-                        <button class="add-to-cart" data-id="6" data-name="Winter Coat" data-price="149.99">Add to Cart</button>
-                    </div>
-                </div>
+            <div class="products" id="all-products">
+                <!-- Products loaded by JavaScript -->
             </div>
         </div>
 
@@ -571,19 +81,19 @@
                 </div>
                 <button class="btn" style="width: 100%;">Send Message</button>
                 
-                <div style="margin-top: 2rem;">
-                    <h3 style="margin-bottom: 1rem;">Fast Delivery Options</h3>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 120px; text-align: center; padding: 1rem; background-color: var(--card-bg); border-radius: 5px;">
-                            <i class="fas fa-shipping-fast" style="font-size: 1.5rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+                <div class="delivery-options">
+                    <h3>Fast Delivery Options</h3>
+                    <div class="delivery-methods">
+                        <div class="delivery-method">
+                            <i class="fas fa-shipping-fast"></i>
                             <p>Standard (3-5 days)</p>
                         </div>
-                        <div style="flex: 1; min-width: 120px; text-align: center; padding: 1rem; background-color: var(--card-bg); border-radius: 5px;">
-                            <i class="fas fa-rocket" style="font-size: 1.5rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+                        <div class="delivery-method">
+                            <i class="fas fa-rocket"></i>
                             <p>Express (1-2 days)</p>
                         </div>
-                        <div style="flex: 1; min-width: 120px; text-align: center; padding: 1rem; background-color: var(--card-bg); border-radius: 5px;">
-                            <i class="fas fa-bolt" style="font-size: 1.5rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+                        <div class="delivery-method">
+                            <i class="fas fa-bolt"></i>
                             <p>Same Day</p>
                         </div>
                     </div>
@@ -595,26 +105,25 @@
         <div id="cart" class="page">
             <h1 class="page-title">Your Shopping Cart</h1>
             <div class="cart-items" id="cart-items">
-                <!-- Cart items will be dynamically added here -->
                 <p id="empty-cart-message">Your cart is empty</p>
             </div>
             
             <div class="cart-summary">
                 <h3>Order Summary</h3>
-                <div style="display: flex; justify-content: space-between; margin: 1rem 0;">
+                <div class="summary-row">
                     <span>Subtotal:</span>
                     <span id="cart-subtotal">$0.00</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; margin: 1rem 0;">
+                <div class="summary-row">
                     <span>Shipping:</span>
                     <span id="cart-shipping">$5.00</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; margin: 1rem 0; font-weight: bold; font-size: 1.2rem;">
+                <div class="summary-row total">
                     <span>Total:</span>
                     <span id="cart-total">$5.00</span>
                 </div>
                 
-                <h3 style="margin-top: 2rem;">Select Payment Method</h3>
+                <h3 class="payment-title">Select Payment Method</h3>
                 <div class="payment-methods">
                     <div class="payment-method" data-method="paypal">
                         <div class="payment-icon">
@@ -636,38 +145,12 @@
                     </div>
                 </div>
                 
-                <div id="payment-details" style="margin-top: 1.5rem; display: none;">
+                <div id="payment-details">
                     <div class="form-group">
                         <label for="phone-number">Phone Number (for M-Pesa)</label>
                         <input type="text" id="phone-number" placeholder="Enter your phone number">
                     </div>
-                    <button class="btn" style="width: 100%;">Complete Payment</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Admin Page -->
-        <div id="admin" class="page">
-            <h1 class="page-title">Admin Dashboard</h1>
-            <div class="about-content">
-                <p>Welcome to the Zuvani Admin Dashboard. Here you can manage products, orders, and customer information.</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-                    <div style="background-color: var(--card-bg); padding: 1.5rem; border-radius: 10px; text-align: center;">
-                        <h3>Products</h3>
-                        <p style="font-size: 2rem; color: var(--primary-color); margin: 1rem 0;">24</p>
-                        <button class="btn" style="width: 100%;">Manage</button>
-                    </div>
-                    <div style="background-color: var(--card-bg); padding: 1.5rem; border-radius: 10px; text-align: center;">
-                        <h3>Orders</h3>
-                        <p style="font-size: 2rem; color: var(--primary-color); margin: 1rem 0;">18</p>
-                        <button class="btn" style="width: 100%;">View</button>
-                    </div>
-                    <div style="background-color: var(--card-bg); padding: 1.5rem; border-radius: 10px; text-align: center;">
-                        <h3>Customers</h3>
-                        <p style="font-size: 2rem; color: var(--primary-color); margin: 1rem 0;">142</p>
-                        <button class="btn" style="width: 100%;">Manage</button>
-                    </div>
+                    <button class="btn complete-payment">Complete Payment</button>
                 </div>
             </div>
         </div>
@@ -685,156 +168,8 @@
         </div>
     </footer>
 
-    <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-        });
-
-        // Navigation
-        const navLinks = document.querySelectorAll('.nav-link');
-        const pages = document.querySelectorAll('.page');
-        
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetPage = link.getAttribute('data-page');
-                
-                // Hide all pages
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                });
-                
-                // Show target page
-                document.getElementById(targetPage).classList.add('active');
-                
-                // Update active nav link (optional)
-                navLinks.forEach(navLink => {
-                    navLink.classList.remove('active');
-                });
-                link.classList.add('active');
-            });
-        });
-
-        // Shop Now button
-        document.querySelector('.shop-now').addEventListener('click', (e) => {
-            e.preventDefault();
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById('shop').classList.add('active');
-        });
-
-        // Cart functionality
-        let cart = [];
-        const cartCount = document.getElementById('cart-count');
-        const cartItems = document.getElementById('cart-items');
-        const emptyCartMessage = document.getElementById('empty-cart-message');
-        const cartSubtotal = document.getElementById('cart-subtotal');
-        const cartShipping = document.getElementById('cart-shipping');
-        const cartTotal = document.getElementById('cart-total');
-        
-        // Add to cart buttons
-        const addToCartButtons = document.querySelectorAll('.add-to-cart');
-        
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const id = button.getAttribute('data-id');
-                const name = button.getAttribute('data-name');
-                const price = parseFloat(button.getAttribute('data-price'));
-                
-                // Check if item already in cart
-                const existingItem = cart.find(item => item.id === id);
-                
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({
-                        id,
-                        name,
-                        price,
-                        quantity: 1
-                    });
-                }
-                
-                updateCart();
-                
-                // Show notification
-                alert(`${name} added to cart!`);
-            });
-        });
-        
-        function updateCart() {
-            // Update cart count
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCount.textContent = `(${totalItems})`;
-            
-            // Update cart display
-            if (cart.length === 0) {
-                emptyCartMessage.style.display = 'block';
-                cartItems.innerHTML = '<p id="empty-cart-message">Your cart is empty</p>';
-            } else {
-                emptyCartMessage.style.display = 'none';
-                
-                let cartHTML = '';
-                let subtotal = 0;
-                
-                cart.forEach(item => {
-                    const itemTotal = item.price * item.quantity;
-                    subtotal += itemTotal;
-                    
-                    cartHTML += `
-                        <div class="cart-item">
-                            <div class="cart-item-img">Product Image</div>
-                            <div class="cart-item-details">
-                                <h3>${item.name}</h3>
-                                <p>Quantity: ${item.quantity}</p>
-                            </div>
-                            <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
-                        </div>
-                    `;
-                });
-                
-                cartItems.innerHTML = cartHTML;
-                
-                // Update totals
-                const shipping = 5.00;
-                const total = subtotal + shipping;
-                
-                cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
-                cartShipping.textContent = `$${shipping.toFixed(2)}`;
-                cartTotal.textContent = `$${total.toFixed(2)}`;
-            }
-        }
-
-        // Payment method selection
-        const paymentMethods = document.querySelectorAll('.payment-method');
-        const paymentDetails = document.getElementById('payment-details');
-        
-        paymentMethods.forEach(method => {
-            method.addEventListener('click', () => {
-                // Remove selected class from all methods
-                paymentMethods.forEach(m => {
-                    m.classList.remove('selected');
-                });
-                
-                // Add selected class to clicked method
-                method.classList.add('selected');
-                
-                // Show payment details
-                paymentDetails.style.display = 'block';
-            });
-        });
-    </script>
+    <script src="scripts/theme.js"></script>
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
