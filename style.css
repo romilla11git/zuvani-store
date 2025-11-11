@@ -385,8 +385,61 @@ nav ul li a:hover::after {
     display: none;
 }
 
-.complete-payment {
-    width: 100%;
+.payment-section {
+    margin-bottom: 1rem;
+}
+
+.stk-prompt {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 2px solid var(--primary-color);
+    margin-top: 1rem;
+}
+
+.stk-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.stk-header i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.stk-content {
+    text-align: center;
+}
+
+.stk-content .amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+}
+
+.pin-input {
+    margin: 1rem 0;
+}
+
+.pin-input input {
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+}
+
+.confirm-payment {
+    background-color: #28a745;
+    color: white;
+    margin-right: 0.5rem;
+}
+
+.cancel-payment {
+    background-color: #dc3545;
+    color: white;
 }
 
 footer {
