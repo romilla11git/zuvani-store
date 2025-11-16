@@ -396,6 +396,368 @@
         }
     </script>
 </body>
+                                                      </html>                <a href="#" class="btn shop-now" data-page="shop">Shop Now</a>
+            </div>
+            
+            <h2 class="page-title">Featured Products</h2>
+            <div class="products" id="featured-products">
+                <!-- Products will appear here -->
+            </div>
+        </div>
+
+        <!-- Shop Page -->
+        <div id="shop" class="page">
+            <h1 class="page-title">Our Collection</h1>
+            <div class="products" id="all-products">
+                <!-- Products will appear here -->
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <h1 class="page-title">About Zuvani</h1>
+            <div class="about-content">
+                <p>Welcome to Zuvani, where fashion meets individuality. We provide high-quality, stylish clothing.</p>
+                <p>Our mission is to make fashion accessible to everyone without compromising on quality or style.</p>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <h1 class="page-title">Get In Touch</h1>
+            <div class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" placeholder="Your Message"></textarea>
+                </div>
+                <button class="btn" id="send-message">Send Message</button>
+            </div>
+        </div>
+
+        <!-- Cart Page -->
+        <div id="cart" class="page">
+            <h1 class="page-title">Your Shopping Cart</h1>
+            <div class="cart-items" id="cart-items">
+                <p id="empty-cart-message">Your cart is empty</p>
+            </div>
+            
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="cart-shipping">$5.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="cart-total">$5.00</span>
+                </div>
+                
+                <h3 class="payment-title">Select Payment Method</h3>
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="mpesa">
+                        <div class="payment-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <p>M-Pesa</p>
+                    </div>
+                    <div class="payment-method" data-method="paypal">
+                        <div class="payment-icon">
+                            <i class="fab fa-paypal"></i>
+                        </div>
+                        <p>PayPal</p>
+                    </div>
+                </div>
+                
+                <div id="payment-details">
+                    <div id="mpesa-payment" class="payment-section">
+                        <div class="form-group">
+                            <label for="phone-number">Phone Number</label>
+                            <input type="text" id="phone-number" placeholder="07XXXXXXXX">
+                        </div>
+                        <button class="btn" id="request-stk">Pay with M-Pesa</button>
+                    </div>
+                    
+                    <div id="stk-prompt" class="stk-prompt" style="display: none;">
+                        <div class="stk-header">
+                            <i class="fas fa-sim-card"></i>
+                            <h3>M-Pesa Payment</h3>
+                        </div>
+                        <div class="stk-content">
+                            <p>Enter your M-Pesa PIN to pay:</p>
+                            <p class="amount" id="stk-amount">$0.00</p>
+                            <div class="pin-input">
+                                <input type="password" id="mpesa-pin" maxlength="4" placeholder="Enter PIN">
+                            </div>
+                            <button class="btn confirm-payment" id="confirm-payment">Pay Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 Zuvani. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // === ALL JAVASCRIPT CODE ===
+        
+        // Products data
+        const products = [
+            { id: 1, name: "Classic White Shirt", price: 49.99, featured: true },
+            { id: 2, name: "Denim Jacket", price: 79.99, featured: true },
+            { id: 3, name: "Summer Dress", price: 59.99, featured: true },
+            { id: 4, name: "Leather Boots", price: 129.99, featured: false },
+            { id: 5, name: "Casual Trousers", price: 39.99, featured: false },
+            { id: 6, name: "Winter Coat", price: 149.99, featured: false }
+        ];
+
+        // Cart functionality
+        let cart = [];
+
+        // Theme Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            });
+
+            // Load products
+            loadFeaturedProducts();
+            loadAllProducts();
+            
+            // Navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetPage = link.getAttribute('data-page');
+                    showPage(targetPage);
+                });
+            });
+
+            // Shop Now button
+            document.querySelector('.shop-now').addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('shop');
+            });
+
+            // M-Pesa payment
+            setupMpesaPayment();
+        });
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function loadFeaturedProducts() {
+            const container = document.getElementById('featured-products');
+            const featured = products.filter(p => p.featured);
+            
+            container.innerHTML = featured.map(product => `
+                <div class="product-card">
+                    <div class="product-img">Image</div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p class="product-price">$${product.price.toFixed(2)}</p>
+                        <button class="add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Add cart event listeners
+            document.querySelectorAll('#featured-products .add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    addToCart(id, name, price);
+                });
+            });
+        }
+
+        function loadAllProducts() {
+            const container = document.getElementById('all-products');
+            
+            container.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-img">Image</div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p class="product-price">$${product.price.toFixed(2)}</p>
+                        <button class="add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Add cart event listeners
+            document.querySelectorAll('#all-products .add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    addToCart(id, name, price);
+                });
+            });
+        }
+
+        function addToCart(id, name, price) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, name, price, quantity: 1 });
+            }
+            
+            updateCart();
+            alert(`${name} added to cart!`);
+        }
+
+        function updateCart() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const emptyMsg = document.getElementById('empty-cart-message');
+            
+            // Update cart count
+            cartCount.textContent = `(${cart.reduce((total, item) => total + item.quantity, 0)})`;
+            
+            // Update cart display
+            if (cart.length === 0) {
+                emptyMsg.style.display = 'block';
+                cartItems.innerHTML = '<p id="empty-cart-message">Your cart is empty</p>';
+            } else {
+                emptyMsg.style.display = 'none';
+                
+                let html = '';
+                let subtotal = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    html += `
+                        <div class="cart-item">
+                            <div class="cart-item-img">Image</div>
+                            <div class="cart-item-details">
+                                <h3>${item.name}</h3>
+                                <p>Quantity: ${item.quantity}</p>
+                            </div>
+                            <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                        </div>
+                    `;
+                });
+                
+                cartItems.innerHTML = html;
+                
+                // Update totals
+                const shipping = 5.00;
+                const total = subtotal + shipping;
+                document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+            }
+        }
+
+        function setupMpesaPayment() {
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            const paymentDetails = document.getElementById('payment-details');
+            const mpesaSection = document.getElementById('mpesa-payment');
+            const stkPrompt = document.getElementById('stk-prompt');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', () => {
+                    paymentMethods.forEach(m => m.classList.remove('selected'));
+                    method.classList.add('selected');
+                    paymentDetails.style.display = 'block';
+                    
+                    if (method.dataset.method === 'mpesa') {
+                        mpesaSection.style.display = 'block';
+                        stkPrompt.style.display = 'none';
+                    }
+                });
+            });
+
+            // M-Pesa payment
+            document.getElementById('request-stk').addEventListener('click', function() {
+                const phone = document.getElementById('phone-number').value;
+                const total = document.getElementById('cart-total').textContent;
+                
+                if (!phone) {
+                    alert('Please enter your phone number.');
+                    return;
+                }
+                
+                if (cart.length === 0) {
+                    alert('Your cart is empty.');
+                    return;
+                }
+                
+                // Show PIN prompt
+                document.getElementById('stk-amount').textContent = total;
+                mpesaSection.style.display = 'none';
+                stkPrompt.style.display = 'block';
+                
+                alert(`Payment request sent to ${phone}. Enter your M-Pesa PIN.`);
+            });
+
+            // Confirm payment
+            document.getElementById('confirm-payment').addEventListener('click', function() {
+                const pin = document.getElementById('mpesa-pin').value;
+                
+                if (!pin || pin.length !== 4) {
+                    alert('Please enter a valid 4-digit PIN.');
+                    return;
+                }
+                
+                alert('Payment processing...');
+                
+                setTimeout(() => {
+                    alert('Payment successful! Thank you for your order.');
+                    cart.length = 0;
+                    updateCart();
+                    stkPrompt.style.display = 'none';
+                    paymentDetails.style.display = 'none';
+                    document.querySelector('.payment-method.selected').classList.remove('selected');
+                    document.getElementById('phone-number').value = '';
+                    document.getElementById('mpesa-pin').value = '';
+                    showPage('home');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
     </html>                <p>Discover the latest trends in fashion with Zuvani. Quality meets style in every piece.</p>
                 <a href="#" class="btn shop-now" data-page="shop">Shop Now</a>
             </div>
@@ -553,4 +915,5 @@
     <script src="scripts/main.js"></script>
 </body>
 </html>
+
 
